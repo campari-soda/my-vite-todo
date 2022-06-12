@@ -4,7 +4,7 @@ import { ref } from 'vue';
 
 const todoRef = ref('');
 const isEditRef = ref(false);
-const { todoListRef, add, show, edit, del, check } = useTodoList();
+const { todoListRef, add, show, edit, del, check, countFin } = useTodoList();
 
 const addTodo = () => {
   add(todoRef.value);
@@ -58,6 +58,10 @@ const changeCheck = (id) => {
         <button class="btn pink" @click="deleteTodo(todo.id)">🚮</button>
       </div>
     </div>
+  </div>
+  <div class="finCount">
+    <span>finished : {{ countFin }},</span>
+    <span>unfinished : {{ todoListRef.length - countFin }}</span>
   </div>
 </template>
 <style scoped>
@@ -116,5 +120,9 @@ const changeCheck = (id) => {
   text-decoration: line-through;
   background-color: #ddd;
   color: #777;
+}
+.finCount {
+  margin-top: 8px;
+  font-size: 0.8em;
 }
 </style>
