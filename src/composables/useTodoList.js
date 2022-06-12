@@ -7,7 +7,7 @@ export const useTodoList = (id) => {
 
   const add = (task) => {
     const id = new Date().getTime();
-    todoListRef.value.push({ id: id, task: task });
+    todoListRef.value.push({ id: id, task: task, checked: false });
     localStorage.todoList = JSON.stringify(todoListRef.value);
   };
 
@@ -42,7 +42,7 @@ export const useTodoList = (id) => {
   const check = (id) => {
     const todo = findById(id);
     const idx = findIndexById(id);
-    todo.cheked = !todo.checked;
+    todo.checked = !todo.checked;
     todoListRef.value.splice(idx, 1, todo);
     localStorage.todoList = JSON.stringify(todoListRef.value);
   };
